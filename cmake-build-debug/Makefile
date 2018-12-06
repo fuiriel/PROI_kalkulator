@@ -204,33 +204,6 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-tree.o: tree.cpp.o
-
-.PHONY : tree.o
-
-# target to build an object file
-tree.cpp.o:
-	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/tree.cpp.o
-.PHONY : tree.cpp.o
-
-tree.i: tree.cpp.i
-
-.PHONY : tree.i
-
-# target to preprocess a source file
-tree.cpp.i:
-	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/tree.cpp.i
-.PHONY : tree.cpp.i
-
-tree.s: tree.cpp.s
-
-.PHONY : tree.s
-
-# target to generate assembly for a file
-tree.cpp.s:
-	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/tree.cpp.s
-.PHONY : tree.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -249,9 +222,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... tree.o"
-	@echo "... tree.i"
-	@echo "... tree.s"
 .PHONY : help
 
 

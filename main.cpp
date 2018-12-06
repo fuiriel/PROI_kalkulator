@@ -7,16 +7,31 @@
 using namespace std;
 
 
-string shunting_yard(char* c)
-{
-    stack <string> operators;
-    stack <string> output_;
+stack<string> shunting_yard(char* c) {
+    stack<string> operators;
+    stack<string> output_;
+    map<string, int> op_ =
+            {
+                    {"+", 1}, //L
+                    {"-", 1}, //L
+                    {"/", 2}, //L
+                    {"*", 2}, //L
+                    {"^", 3}, //R
+                    {"!", 4}, //-
+                    {"log", 4}, //-
+                    {"ln", 4}, //-
+                    {"exp", 4}, //-
+
+            };
+   // bool bracket = false; //nawiasy
     for(int i = 0; i < strlen(c); i++)
     {
         string s = "";
 
         if(isdigit(c[i])){
-            s += c[i];
+
+            while(isdigit(c[i]))
+                s += c[i];
             output_.push(s);
         }
         else if(isalpha(c[i]))
@@ -35,15 +50,52 @@ string shunting_yard(char* c)
             {
                 output_.push(letters);
             }
-            else return "@";
+            else
+            {
+                output_.push("@");
+                return output_;
+            }
         }
-        else if(c[i] == '+' || c[i] == '-' || c[i] == '/' ||c[i] == '*' ||c[i] == '(' ||c[i] == ')'
-                || c[i] == '!' || c[i] == '^')
+        else if(c[i] == '!')
         {
             s += c[i];
             operators.push(s);
         }
-        else return "@";
+        else if(op_[s+c[i]] != 4) /// ? + - * /
+        {
+            s += c[i];
+            while((op_[operators.top()] == 4 || op_[operators.top()] > op_[s] || op_[operators.top()] == op_[s]) && operators.top() != "(")
+            {
+                output_.push(operators.top());
+                operators.pop();
+            }
+            operators.push(s);
+        }
+        else if( c[i] == '(')
+        {
+            s += c[i];
+            operators.push(s);
+        }
+        else if( c[i] == ')')
+        {
+            s += c[i];
+            while(operators.top() != "(")
+            {
+                output_.push(operators.top());
+                operators.pop();
+            }
+            operators.pop();
+        }
+        else
+        {
+            output_.push("@");
+            return output_;
+        }
+    }
+    while(!operators.empty())
+    {
+        output_.push(operators.top());
+        operators.pop();
     }
 
 }
@@ -53,14 +105,19 @@ int main() {
     n->print();
      cout << endl;*/
 
-    char* exp_ = new char[100];
-    cin >> exp_;
-
-    string exps = shunting_yard(exp_);
-    if(exps == "@")
+    char exp_[100];
+    gets(exp_);
+    cout << exp_;
+    stack<string> exps = shunting_yard(exp_);
+    if(exps.top() == "@")
     {
         cout << "bledne dzialanie";
         return 0;
+    }
+    while(!exps.empty())
+    {
+        cout << exps.top();
+        exps.pop();
     }
 
     /*map <char, Expression*> var;

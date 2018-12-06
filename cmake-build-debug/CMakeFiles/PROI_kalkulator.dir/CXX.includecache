@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/classes.h
+
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/function.cpp
+iostream
+-
+cmath
+-
+classes.h
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/classes.h
+
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/main.cpp
+iostream
+-
+cmath
+-
+cstring
+-
+map
+-
+classes.h
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/classes.h
+

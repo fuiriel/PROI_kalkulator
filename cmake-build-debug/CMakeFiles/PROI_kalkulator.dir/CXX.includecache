@@ -6,17 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/classes.h
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
 
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/function.cpp
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/constructors.cpp
+iostream
+-
+classes.h
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
+
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.cpp
 iostream
 -
 cmath
 -
 classes.h
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/classes.h
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
 
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/main.cpp
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/main.cpp
 iostream
 -
 cmath
@@ -26,5 +32,5 @@ cstring
 map
 -
 classes.h
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/classes.h
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
 

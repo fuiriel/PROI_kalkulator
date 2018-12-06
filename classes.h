@@ -6,6 +6,8 @@
 #define PROI_KALKULATOR_CLASSES_H
 
 class Expression {
+protected:
+    std::string expression_;
 public:
     virtual ~Expression() {}
 

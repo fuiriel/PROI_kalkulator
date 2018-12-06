@@ -48,10 +48,10 @@ RM = /cygdrive/c/Users/KSzym/.CLion2017.3/system/cygwin_cmake/bin/cmake.exe -E r
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator
+CMAKE_SOURCE_DIR = /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/cmake-build-debug
+CMAKE_BINARY_DIR = /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/cmake-build-debug/CMakeFiles /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,6 +122,33 @@ PROI_kalkulator: cmake_check_build_system
 PROI_kalkulator/fast:
 	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/build
 .PHONY : PROI_kalkulator/fast
+
+constructors.o: constructors.cpp.o
+
+.PHONY : constructors.o
+
+# target to build an object file
+constructors.cpp.o:
+	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o
+.PHONY : constructors.cpp.o
+
+constructors.i: constructors.cpp.i
+
+.PHONY : constructors.i
+
+# target to preprocess a source file
+constructors.cpp.i:
+	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/constructors.cpp.i
+.PHONY : constructors.cpp.i
+
+constructors.s: constructors.cpp.s
+
+.PHONY : constructors.s
+
+# target to generate assembly for a file
+constructors.cpp.s:
+	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/constructors.cpp.s
+.PHONY : constructors.cpp.s
 
 function.o: function.cpp.o
 
@@ -177,6 +204,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+tree.o: tree.cpp.o
+
+.PHONY : tree.o
+
+# target to build an object file
+tree.cpp.o:
+	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/tree.cpp.o
+.PHONY : tree.cpp.o
+
+tree.i: tree.cpp.i
+
+.PHONY : tree.i
+
+# target to preprocess a source file
+tree.cpp.i:
+	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/tree.cpp.i
+.PHONY : tree.cpp.i
+
+tree.s: tree.cpp.s
+
+.PHONY : tree.s
+
+# target to generate assembly for a file
+tree.cpp.s:
+	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/tree.cpp.s
+.PHONY : tree.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +240,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... PROI_kalkulator"
+	@echo "... constructors.o"
+	@echo "... constructors.i"
+	@echo "... constructors.s"
 	@echo "... function.o"
 	@echo "... function.i"
 	@echo "... function.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... tree.o"
+	@echo "... tree.i"
+	@echo "... tree.s"
 .PHONY : help
 
 

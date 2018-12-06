@@ -1,3 +1,3 @@
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/cmake-build-debug/CMakeFiles/PROI_kalkulator.dir
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles/PROI_kalkulator.dir

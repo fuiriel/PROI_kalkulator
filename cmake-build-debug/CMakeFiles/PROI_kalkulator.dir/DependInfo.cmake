@@ -4,8 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/function.cpp" "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/cmake-build-debug/CMakeFiles/PROI_kalkulator.dir/function.cpp.o"
-  "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/main.cpp" "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_kalkulator/cmake-build-debug/CMakeFiles/PROI_kalkulator.dir/main.cpp.o"
+  "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/constructors.cpp" "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o"
+  "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.cpp" "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles/PROI_kalkulator.dir/function.cpp.o"
+  "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/main.cpp" "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles/PROI_kalkulator.dir/main.cpp.o"
+  "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/tree.cpp" "/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles/PROI_kalkulator.dir/tree.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

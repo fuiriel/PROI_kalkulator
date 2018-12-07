@@ -5,6 +5,7 @@
 #ifndef PROI_KALKULATOR_CLASSES_H
 #define PROI_KALKULATOR_CLASSES_H
 
+
 class Expression {
 protected:
     std::string expression_;

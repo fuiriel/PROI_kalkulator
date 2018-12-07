@@ -83,13 +83,13 @@
 		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h">
 			<Option target="PROI_kalkulator"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/constructors.cpp">
-			<Option target="PROI_kalkulator"/>
-		</Unit>
 		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.cpp">
 			<Option target="PROI_kalkulator"/>
 		</Unit>
 		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/main.cpp">
+			<Option target="PROI_kalkulator"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/operation.cpp">
 			<Option target="PROI_kalkulator"/>
 		</Unit>
 		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/CMakeLists.txt">

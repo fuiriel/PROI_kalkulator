@@ -42,6 +42,7 @@ public:
     explicit FactorialExp(Expression* exp) : m_exp(exp){}
     ~FactorialExp() {}
     float eval();
+    void print();
 protected:
     Expression* m_exp;
 };

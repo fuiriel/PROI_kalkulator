@@ -81,9 +81,33 @@ CMakeFiles/PROI_kalkulator.dir/main.cpp.o.provides: CMakeFiles/PROI_kalkulator.d
 CMakeFiles/PROI_kalkulator.dir/main.cpp.o.provides.build: CMakeFiles/PROI_kalkulator.dir/main.cpp.o
 
 
+CMakeFiles/PROI_kalkulator.dir/operation.cpp.o: CMakeFiles/PROI_kalkulator.dir/flags.make
+CMakeFiles/PROI_kalkulator.dir/operation.cpp.o: ../operation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PROI_kalkulator.dir/operation.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PROI_kalkulator.dir/operation.cpp.o -c /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/operation.cpp
+
+CMakeFiles/PROI_kalkulator.dir/operation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROI_kalkulator.dir/operation.cpp.i"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/operation.cpp > CMakeFiles/PROI_kalkulator.dir/operation.cpp.i
+
+CMakeFiles/PROI_kalkulator.dir/operation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROI_kalkulator.dir/operation.cpp.s"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/operation.cpp -o CMakeFiles/PROI_kalkulator.dir/operation.cpp.s
+
+CMakeFiles/PROI_kalkulator.dir/operation.cpp.o.requires:
+
+.PHONY : CMakeFiles/PROI_kalkulator.dir/operation.cpp.o.requires
+
+CMakeFiles/PROI_kalkulator.dir/operation.cpp.o.provides: CMakeFiles/PROI_kalkulator.dir/operation.cpp.o.requires
+	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/operation.cpp.o.provides.build
+.PHONY : CMakeFiles/PROI_kalkulator.dir/operation.cpp.o.provides
+
+CMakeFiles/PROI_kalkulator.dir/operation.cpp.o.provides.build: CMakeFiles/PROI_kalkulator.dir/operation.cpp.o
+
+
 CMakeFiles/PROI_kalkulator.dir/function.cpp.o: CMakeFiles/PROI_kalkulator.dir/flags.make
 CMakeFiles/PROI_kalkulator.dir/function.cpp.o: ../function.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PROI_kalkulator.dir/function.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PROI_kalkulator.dir/function.cpp.o"
 	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PROI_kalkulator.dir/function.cpp.o -c /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.cpp
 
 CMakeFiles/PROI_kalkulator.dir/function.cpp.i: cmake_force
@@ -105,42 +129,18 @@ CMakeFiles/PROI_kalkulator.dir/function.cpp.o.provides: CMakeFiles/PROI_kalkulat
 CMakeFiles/PROI_kalkulator.dir/function.cpp.o.provides.build: CMakeFiles/PROI_kalkulator.dir/function.cpp.o
 
 
-CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o: CMakeFiles/PROI_kalkulator.dir/flags.make
-CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o: ../constructors.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o -c /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/constructors.cpp
-
-CMakeFiles/PROI_kalkulator.dir/constructors.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROI_kalkulator.dir/constructors.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/constructors.cpp > CMakeFiles/PROI_kalkulator.dir/constructors.cpp.i
-
-CMakeFiles/PROI_kalkulator.dir/constructors.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROI_kalkulator.dir/constructors.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/constructors.cpp -o CMakeFiles/PROI_kalkulator.dir/constructors.cpp.s
-
-CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o.requires:
-
-.PHONY : CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o.requires
-
-CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o.provides: CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o.requires
-	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o.provides.build
-.PHONY : CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o.provides
-
-CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o.provides.build: CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o
-
-
 # Object files for target PROI_kalkulator
 PROI_kalkulator_OBJECTS = \
 "CMakeFiles/PROI_kalkulator.dir/main.cpp.o" \
-"CMakeFiles/PROI_kalkulator.dir/function.cpp.o" \
-"CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o"
+"CMakeFiles/PROI_kalkulator.dir/operation.cpp.o" \
+"CMakeFiles/PROI_kalkulator.dir/function.cpp.o"
 
 # External object files for target PROI_kalkulator
 PROI_kalkulator_EXTERNAL_OBJECTS =
 
 PROI_kalkulator.exe: CMakeFiles/PROI_kalkulator.dir/main.cpp.o
+PROI_kalkulator.exe: CMakeFiles/PROI_kalkulator.dir/operation.cpp.o
 PROI_kalkulator.exe: CMakeFiles/PROI_kalkulator.dir/function.cpp.o
-PROI_kalkulator.exe: CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o
 PROI_kalkulator.exe: CMakeFiles/PROI_kalkulator.dir/build.make
 PROI_kalkulator.exe: CMakeFiles/PROI_kalkulator.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable PROI_kalkulator.exe"
@@ -152,8 +152,8 @@ CMakeFiles/PROI_kalkulator.dir/build: PROI_kalkulator.exe
 .PHONY : CMakeFiles/PROI_kalkulator.dir/build
 
 CMakeFiles/PROI_kalkulator.dir/requires: CMakeFiles/PROI_kalkulator.dir/main.cpp.o.requires
+CMakeFiles/PROI_kalkulator.dir/requires: CMakeFiles/PROI_kalkulator.dir/operation.cpp.o.requires
 CMakeFiles/PROI_kalkulator.dir/requires: CMakeFiles/PROI_kalkulator.dir/function.cpp.o.requires
-CMakeFiles/PROI_kalkulator.dir/requires: CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o.requires
 
 .PHONY : CMakeFiles/PROI_kalkulator.dir/requires
 

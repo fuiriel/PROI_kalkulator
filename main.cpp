@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cmath>
+#include <sstream>
 #include <cstring>
 #include <map>
 #include <stack>
@@ -21,18 +21,21 @@ stack<string> shunting_yard(char* c) {
                     {"log", 4}, //-
                     {"ln", 4}, //-
                     {"exp", 4}, //-
-
             };
-   // bool bracket = false; //nawiasy
+
+    // bool bracket = false; //nawiasy
     for(int i = 0; i < strlen(c); i++)
     {
         string s = "";
-
+        //cout << i << ": " << s+c[i] << endl;
         if(isdigit(c[i])){
 
-            while(isdigit(c[i]))
+            while(isdigit(c[i])|| c[i] == '.'){
                 s += c[i];
+                i++;
+            }
             output_.push(s);
+            i--;
         }
         else if(isalpha(c[i]))
         {
@@ -42,6 +45,7 @@ stack<string> shunting_yard(char* c) {
                 letters += c[i];
                 i++;
             }
+            i--;
             if(letters == "log" || letters == "ln" || letters == "exp")
             {
                 operators.push(letters);
@@ -61,11 +65,13 @@ stack<string> shunting_yard(char* c) {
             s += c[i];
             operators.push(s);
         }
-        else if(op_[s+c[i]] != 4) /// ? + - * /
+        else if(op_[s+c[i]] < 4 && op_[s+c[i]] > 0) /// + - * /
         {
             s += c[i];
-            while((op_[operators.top()] == 4 || op_[operators.top()] > op_[s] || op_[operators.top()] == op_[s]) && operators.top() != "(")
+            while(!operators.empty() && operators.top() != "(" && (op_[operators.top()] == 4 ||
+                    op_[operators.top()] > op_[s] || op_[operators.top()] == op_[s]))
             {
+                //cout << "ugh" << endl;
                 output_.push(operators.top());
                 operators.pop();
             }
@@ -79,10 +85,15 @@ stack<string> shunting_yard(char* c) {
         else if( c[i] == ')')
         {
             s += c[i];
-            while(operators.top() != "(")
+            while(operators.top() != "(" && !operators.empty())
             {
                 output_.push(operators.top());
                 operators.pop();
+            }
+            if(operators.empty())
+            {
+                output_.push("@");
+                return output_;
             }
             operators.pop();
         }
@@ -97,29 +108,123 @@ stack<string> shunting_yard(char* c) {
         output_.push(operators.top());
         operators.pop();
     }
-
+    return output_;
 }
+
+Expression* resolve(stack<string> exp_)
+{
+    stringstream ss;
+    float v;
+    Expression* v1, *v2;
+    stack <Expression*> numbers;
+
+
+    while(!exp_.empty())
+    {
+        ss.str("");         // usuwamy wszelki tekst ze strumienia
+        ss.clear();         // czyœcimy b³êdy konwersji z poprzednich wywo³añ
+        ss << exp_.top();
+
+        if(ss >> v) {
+            //cout << v << ';';
+            numbers.push(new Number(v));
+        }
+        else if(exp_.top() == "+"){
+
+            v1 = numbers.top();
+            numbers.pop();
+            v2 = numbers.top();
+            numbers.pop();
+            numbers.push(new AdditionExp(v1,v2));
+        }
+        else if (exp_.top() == "-"){
+            v1 = numbers.top();
+            numbers.pop();
+            v2 = numbers.top();
+            numbers.pop();
+            numbers.push(new SubtractionExp(v2,v1));
+        }
+        else if (exp_.top() == "/"){
+            v1 = numbers.top();
+            numbers.pop();
+            v2 = numbers.top();
+            numbers.pop();
+            numbers.push(new DivisionExp(v2,v1));
+        }
+        else if (exp_.top() == "*"){
+            v1 = numbers.top();
+            numbers.pop();
+            v2 = numbers.top();
+            numbers.pop();
+            numbers.push(new MultiplicationExp(v2,v1));
+        }
+        else if (exp_.top() == "^"){
+            v1 = numbers.top();
+            numbers.pop();
+            v2 = numbers.top();
+            numbers.pop();
+            numbers.push(new PowerExp(v2,v1));
+        }
+        else if (exp_.top() == "!"){
+            v1 = numbers.top();
+            numbers.pop();
+            numbers.push(new FactorialExp(v1));
+        }
+        else if (exp_.top() == "log"){
+            v1 = numbers.top();
+            numbers.pop();
+            numbers.push(new Log10Exp(v1));
+        }
+        else if (exp_.top() == "ln"){
+            v1 = numbers.top();
+            numbers.pop();
+            numbers.push(new LnExp(v1));
+        }
+        else if (exp_.top() == "exp"){
+            v1 = numbers.top();
+            numbers.pop();
+            numbers.push(new ExpExp(v1));
+        }
+        else{
+            cout << "BLAD!!";
+            return nullptr;
+        }
+       // numbers.top()->print();
+        //cout << endl;
+        exp_.pop();
+    }
+    return numbers.top();
+}
+
 int main() {
-    float c = 2.68;
-    /*Number* n = new Number(c);
-    n->print();
-     cout << endl;*/
 
     char exp_[100];
     gets(exp_);
-    cout << exp_;
-    stack<string> exps = shunting_yard(exp_);
+    //cout << exp_ << endl;
+
+   stack<string> exps = shunting_yard(exp_);
     if(exps.top() == "@")
     {
         cout << "bledne dzialanie";
         return 0;
     }
+    stack<string> exps2;
+
     while(!exps.empty())
     {
-        cout << exps.top();
+        //cout << exps.top();
+        exps2.push(exps.top());
         exps.pop();
     }
-
+   // cout << endl;
+   /* while(!exps2.empty())
+    {
+        cout << exps2.top() << ' ';
+        exps2.pop();
+    }*/
+    Expression* a = resolve(exps2);
+    a -> print();
+    cout << endl;
     /*map <char, Expression*> var;
 
     Expression* a = new AdditionExp(new Number(2), new PowerExp(new Number(2), new AdditionExp(new Number(2), new Number(1))));

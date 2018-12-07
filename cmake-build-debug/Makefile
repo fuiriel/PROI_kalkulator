@@ -123,33 +123,6 @@ PROI_kalkulator/fast:
 	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/build
 .PHONY : PROI_kalkulator/fast
 
-constructors.o: constructors.cpp.o
-
-.PHONY : constructors.o
-
-# target to build an object file
-constructors.cpp.o:
-	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/constructors.cpp.o
-.PHONY : constructors.cpp.o
-
-constructors.i: constructors.cpp.i
-
-.PHONY : constructors.i
-
-# target to preprocess a source file
-constructors.cpp.i:
-	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/constructors.cpp.i
-.PHONY : constructors.cpp.i
-
-constructors.s: constructors.cpp.s
-
-.PHONY : constructors.s
-
-# target to generate assembly for a file
-constructors.cpp.s:
-	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/constructors.cpp.s
-.PHONY : constructors.cpp.s
-
 function.o: function.cpp.o
 
 .PHONY : function.o
@@ -204,6 +177,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+operation.o: operation.cpp.o
+
+.PHONY : operation.o
+
+# target to build an object file
+operation.cpp.o:
+	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/operation.cpp.o
+.PHONY : operation.cpp.o
+
+operation.i: operation.cpp.i
+
+.PHONY : operation.i
+
+# target to preprocess a source file
+operation.cpp.i:
+	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/operation.cpp.i
+.PHONY : operation.cpp.i
+
+operation.s: operation.cpp.s
+
+.PHONY : operation.s
+
+# target to generate assembly for a file
+operation.cpp.s:
+	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/operation.cpp.s
+.PHONY : operation.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -213,15 +213,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... PROI_kalkulator"
-	@echo "... constructors.o"
-	@echo "... constructors.i"
-	@echo "... constructors.s"
 	@echo "... function.o"
 	@echo "... function.i"
 	@echo "... function.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... operation.o"
+	@echo "... operation.i"
+	@echo "... operation.s"
 .PHONY : help
 
 

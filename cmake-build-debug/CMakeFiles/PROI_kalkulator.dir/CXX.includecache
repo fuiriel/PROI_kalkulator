@@ -8,30 +8,26 @@
 
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
 
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/constructors.cpp
-iostream
--
-classes.h
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
-
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.cpp
-iostream
--
-cmath
--
-classes.h
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
 
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/main.cpp
 iostream
 -
-cmath
+sstream
 -
 cstring
 -
 map
 -
 stack
+-
+classes.h
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
+
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/operation.cpp
+iostream
+-
+cmath
 -
 classes.h
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h

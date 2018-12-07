@@ -123,33 +123,6 @@ PROI_kalkulator/fast:
 	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/build
 .PHONY : PROI_kalkulator/fast
 
-function.o: function.cpp.o
-
-.PHONY : function.o
-
-# target to build an object file
-function.cpp.o:
-	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/function.cpp.o
-.PHONY : function.cpp.o
-
-function.i: function.cpp.i
-
-.PHONY : function.i
-
-# target to preprocess a source file
-function.cpp.i:
-	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/function.cpp.i
-.PHONY : function.cpp.i
-
-function.s: function.cpp.s
-
-.PHONY : function.s
-
-# target to generate assembly for a file
-function.cpp.s:
-	$(MAKE) -f CMakeFiles/PROI_kalkulator.dir/build.make CMakeFiles/PROI_kalkulator.dir/function.cpp.s
-.PHONY : function.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -213,9 +186,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... PROI_kalkulator"
-	@echo "... function.o"
-	@echo "... function.i"
-	@echo "... function.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

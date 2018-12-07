@@ -3,4 +3,4 @@ project(PROI_kalkulator)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(PROI_kalkulator main.cpp operation.cpp function.cpp function.h maps.h classes.h )
+add_executable(PROI_kalkulator main.cpp operation.cpp maps.h classes.h )

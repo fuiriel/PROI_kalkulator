@@ -6,19 +6,19 @@
 #include <list>
 #include "classes.h"
 #include "maps.h"
-#include "function.h"
+//#include "function.h"
 using namespace std;
 
+/*10*(2+2^2-10) rek = -80 nierek = -40*/
 
 stack<string> shunting_yard(char* c) {
     stack<string> operators;
     stack<string> output_;
 
-    // bool bracket = false; //nawiasy
     for(int i = 0; i < strlen(c); i++)
     {
         string s = "";
-        //cout << i << ": " << s+c[i] << endl;
+
         if(isdigit(c[i])){
 
             while(isdigit(c[i])|| c[i] == '.'){
@@ -62,7 +62,6 @@ stack<string> shunting_yard(char* c) {
             while(!operators.empty() && operators.top() != "(" && (op_[operators.top()] == 4 ||
                                                                    op_[operators.top()] > op_[s] || op_[operators.top()] == op_[s]))
             {
-                //cout << "ugh" << endl;
                 output_.push(operators.top());
                 operators.pop();
             }
@@ -101,6 +100,23 @@ stack<string> shunting_yard(char* c) {
     }
     return output_;
 }
+void variableOfTwoOperandExp(list<string> &list_, list<string> &v1, list <string> &v2)
+{
+    for(int i = 0; i < 3; i++)
+    {
+        v1.push_back(list_.front());
+        list_.pop_front();
+        if(op_[v1.back()] <= 4 && op_[v1.front()] > 0) break;
+    }
+    if(op_[v1.back()] > 4 || op_[v1.back()] < 1)
+    {
+        list_.push_front(v1.back());
+        v1.pop_back();
+        list_.push_front(v1.back());
+        v1.pop_back();
+    }
+    v2 = list_;
+}
 Expression* resolving(list<string> exp_) //rekurencyjnie
 {
     stringstream ss;
@@ -109,28 +125,18 @@ Expression* resolving(list<string> exp_) //rekurencyjnie
     list <string> v1, v2;
 
     if(ss >> v) {
-        //cout << v << ';';
         return new Number(v);
     }
     else if(exp_.back() == "+") {
         exp_.pop_back();
         if(exp_.empty()) return nullptr;
-
         if(exp_.size() == 2)
         {
             v1.push_back(exp_.front());
             v2.push_back(exp_.back());
             return new AdditionExp(resolving(v1),resolving(v2));
         }
-        while (op_[exp_.front()] > 4 || op_[exp_.front()] < 0)
-        {
-            v1.push_back(exp_.front());
-            exp_.pop_front();
-        }
-        v1.push_back(exp_.front());
-        exp_.pop_front();
-
-        v2 = exp_;
+        variableOfTwoOperandExp(exp_, v1, v2);
 
         return new AdditionExp(resolving(v1),resolving(v2));
     }
@@ -144,17 +150,7 @@ Expression* resolving(list<string> exp_) //rekurencyjnie
             v2.push_back(exp_.back());
             return new SubtractionExp(resolving(v1),resolving(v2));
         }
-        while (op_[exp_.front()] > 4 || op_[exp_.front()] < 0)
-        {
-            v1.push_back(exp_.front());
-            exp_.pop_front();
-        }
-
-        v1.push_back(exp_.front());
-        exp_.pop_front();
-
-        v2 = exp_;
-
+        variableOfTwoOperandExp(exp_, v1, v2);
 
         return new SubtractionExp(resolving(v1),resolving(v2));
     }
@@ -168,14 +164,7 @@ Expression* resolving(list<string> exp_) //rekurencyjnie
             v2.push_back(exp_.back());
             return new DivisionExp(resolving(v1),resolving(v2));
         }
-        while (op_[exp_.front()] > 4 || op_[exp_.front()] < 0)
-        {
-            v1.push_back(exp_.front());
-            exp_.pop_front();
-        }
-
-        v1.push_back(exp_.front());
-        exp_.pop_front();
+        variableOfTwoOperandExp(exp_, v1, v2);
 
         v2 = exp_;
 
@@ -191,17 +180,7 @@ Expression* resolving(list<string> exp_) //rekurencyjnie
             v2.push_back(exp_.back());
             return new MultiplicationExp(resolving(v1),resolving(v2));
         }
-        while (op_[exp_.front()] > 4 || op_[exp_.front()] < 0)
-        {
-            v1.push_back(exp_.front());
-            exp_.pop_front();
-        }
-
-        v1.push_back(exp_.front());
-        exp_.pop_front();
-
-        v2 = exp_;
-
+        variableOfTwoOperandExp(exp_, v1, v2);
 
         return new MultiplicationExp(resolving(v1),resolving(v2));
     }
@@ -215,93 +194,32 @@ Expression* resolving(list<string> exp_) //rekurencyjnie
             v2.push_back(exp_.back());
             return new PowerExp(resolving(v1), resolving(v2));
         }
-        while (op_[exp_.front()] > 4 || op_[exp_.front()] < 0)
-        {
-            v1.push_back(exp_.front());
-            exp_.pop_front();
-        }
-
-        v1.push_back(exp_.front());
-        exp_.pop_front();
-
-        v2 = exp_;
-
+        variableOfTwoOperandExp(exp_, v1, v2);
         return new PowerExp(resolving(v1),resolving(v2));
     }
     else if (exp_.back() == "!"){
         exp_.pop_back();
         if(exp_.empty()) return nullptr;
-        if(exp_.size() == 1)
-        {
-            v1.push_back(exp_.front());
-            return new FactorialExp(resolving(v1));
-        }
-        while(op_[exp_.front()] > 4 || op_[exp_.front()] < 1)
-        {
-            v1.push_back(exp_.front());
-            exp_.pop_front();
-        }
-        v1.push_back(exp_.front());
-        exp_.pop_front();
 
-        return new FactorialExp(resolving(v1));
+        return new FactorialExp(resolving(exp_));
     }
     else if (exp_.back() == "log"){
         exp_.pop_back();
         if(exp_.empty()) return nullptr;
 
-        if(exp_.size() == 1)
-        {
-            v1.push_back(exp_.front());
-            return new Log10Exp(resolving(v1));
-        }
-        while(op_[exp_.front()] > 4 || op_[exp_.front()] < 1)
-        {
-            v1.push_back(exp_.front());
-            exp_.pop_front();
-        }
-        v1.push_back(exp_.front());
-        exp_.pop_front();
-
-        return new Log10Exp(resolving(v1));
+        return new Log10Exp(resolving(exp_));
     }
     else if (exp_.back() == "ln"){
         exp_.pop_back();
         if(exp_.empty()) return nullptr;
 
-        if(exp_.size() == 1)
-        {
-            v1.push_back(exp_.front());
-            return new LnExp(resolving(v1));
-        }
-        while(op_[exp_.front()] > 4 || op_[exp_.front()] < 1)
-        {
-            v1.push_back(exp_.front());
-            exp_.pop_front();
-        }
-        v1.push_back(exp_.front());
-        exp_.pop_front();
-
-        return new LnExp(resolving(v1));
+        return new LnExp(resolving(exp_));
     }
     else if (exp_.back() == "exp"){
         exp_.pop_back();
         if(exp_.empty()) return nullptr;
 
-        if(exp_.size() == 1)
-        {
-            v1.push_back(exp_.front());
-            return new ExpExp(resolving(v1));
-        }
-        while(op_[exp_.front()] > 4 || op_[exp_.front()] < 1)
-        {
-            v1.push_back(exp_.front());
-            exp_.pop_front();
-        }
-        v1.push_back(exp_.front());
-        exp_.pop_front();
-
-        return new ExpExp(resolving(v1));
+        return new ExpExp(resolving(exp_));
     }
     else{
         cout << "BLAD!!";
@@ -316,7 +234,6 @@ Expression* resolve(stack<string> exp_) //nierekurencyjnie
     float v;
     Expression* v1, *v2;
     stack <Expression*> numbers;
-
 
     while(!exp_.empty())
     {
@@ -396,10 +313,10 @@ Expression* resolve(stack<string> exp_) //nierekurencyjnie
 }
 
 int main() {
-
+    cout << "KALKULATOR ZMIENNYCH\nAby zakonczyc wpisz #\n";
     char exp_[100];
     gets(exp_);
-
+    if(exp_[0] == '#') return 0;
 
     stack<string> exps = shunting_yard(exp_);
     if(exps.top() == "@")
@@ -415,14 +332,12 @@ int main() {
         exps2.push(exps.top());
         exps.pop();
     }
-   // cout << endl;
     list <string> listOfExp;
     while(!exps.empty())
     {
         listOfExp.push_front(exps.top());
         exps.pop();
     }
-    cout << endl;
     //cout << listOfExp.size() << endl;
     Expression* a;
     a = resolve(exps2);

@@ -5,6 +5,7 @@
 #ifndef PROI_KALKULATOR_MAPS_H
 #define PROI_KALKULATOR_MAPS_H
 #include <map>
+#include "classes.h"
 
 std::map<std::string, int> op_ =
         {
@@ -19,6 +20,6 @@ std::map<std::string, int> op_ =
                 {"exp", 4}, //-
         };
 
-std::map<char, int> val;
+std::map<char, ExpressionContainer*> var;
 
 #endif //PROI_KALKULATOR_MAPS_H

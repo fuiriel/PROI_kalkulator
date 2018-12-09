@@ -19,9 +19,9 @@ stack<string> shunting_yard(char* c) {
     for(int i = 0; i < strlen(c); i++)
     {
         string s = "";
+        s.clear();
 
         if(isdigit(c[i])){
-
             while(isdigit(c[i])|| c[i] == '.'){
                 s += c[i];
                 i++;
@@ -39,13 +39,9 @@ stack<string> shunting_yard(char* c) {
             }
             i--;
             if(letters == "log" || letters == "ln" || letters == "exp")
-            {
                 operators.push(letters);
-            }
             else if(letters.size() == 1)
-            {
                 output_.push(letters);
-            }
             else
             {
                 output_.push("@");
@@ -60,8 +56,8 @@ stack<string> shunting_yard(char* c) {
         else if(op_[s+c[i]] < 4 && op_[s+c[i]] > 0) /// + - * /
         {
             s += c[i];
-            while(!operators.empty() && operators.top() != "(" && (op_[operators.top()] == 4 ||
-                                                                   op_[operators.top()] > op_[s] || op_[operators.top()] == op_[s]))
+            while(!operators.empty() && operators.top() != "(" &&
+                    (op_[operators.top()] == 4 || op_[operators.top()] > op_[s] || op_[operators.top()] == op_[s]))
             {
                 output_.push(operators.top());
                 operators.pop();
@@ -101,23 +97,7 @@ stack<string> shunting_yard(char* c) {
     }
     return output_;
 }
-void variableOfTwoOperandExp(list<string> &list_, list<string> &v1, list <string> &v2)
-{
-    for(int i = 0; i < 3; i++)
-    {
-        v1.push_back(list_.front());
-        list_.pop_front();
-        if(op_[v1.back()] <= 4 && op_[v1.front()] > 0) break;
-    }
-    if(op_[v1.back()] > 4 || op_[v1.back()] < 1)
-    {
-        list_.push_front(v1.back());
-        v1.pop_back();
-        list_.push_front(v1.back());
-        v1.pop_back();
-    }
-    v2 = list_;
-}
+
 Expression* resolve(stack<string> exp_) //nierekurencyjnie
 {
     stringstream ss;
@@ -202,72 +182,51 @@ Expression* resolve(stack<string> exp_) //nierekurencyjnie
 int main() {
     cout << "KALKULATOR ZMIENNYCH\nAby zakonczyc wpisz #\n";
     char exp_[100];
-    gets(exp_);
-    if(exp_[0] == '#') return 0;
 
-    stack<string> exps = shunting_yard(exp_);
-    if(exps.top() == "@")
-    {
-        cout << "bledne dzialanie";
-        return 0;
+    while(true) {
+        gets(exp_);
+        if (exp_[0] == '#') return 0;
+        if(exp_[0] == '=')
+        {
+            if(!var.empty())
+            {
+                for(auto elem: var)
+                {
+                    cout << elem.first <<  " = ";
+                    elem.second->print();
+                }
+            } else
+            {
+                cout << "brak dzialan do wykonania" << endl;
+            }
+            continue;
+        }
+
+        stack<string> exps = shunting_yard(exp_);
+        if (exps.top() == "@") {
+            cout << "bledne dzialanie" << endl;
+            continue;
+        }
+
+        stack<string> exps2; // przepisuje odrwotnie
+        while (!exps.empty()) {
+            exps2.push(exps.top());
+            exps.pop();
+        }
+
+        ExpressionContainer *exp;
+        exp->setExpression(resolve(exps2));
+        /*ExpressionContainer* a = new ExpressionContainer(new Number(3));
+        ExpressionContainer* b = new ExpressionContainer(new MultiplicationExp(a, new Number(2)));
+        b->print();
+        a->setExpression(new Number(100));
+        b->print();*/
+        //a = resolving(listOfExp);
+        if (!exp->eval()) { // wymyśl coś by nie liczyło dwa razy
+            cout << "bledne dzialanie!" << endl;
+        }
+        exp->print();
+        // cout << endl;
+
     }
-    stack<string> exps2;
-
-    while(!exps.empty())
-    {
-        //cout << exps.top() << ' ';
-        exps2.push(exps.top());
-        exps.pop();
-    }
-    Expression* a;
-    a = resolve(exps2);
-
-//    Expression* b = new AdditionExp(new Number(2), new PowerExp(new Number(2), new AdditionExp(new Number(2), new Number(1))));
-    /*ExpressionContainer* a = new ExpressionContainer(new Number(3));
-    ExpressionContainer* b = new ExpressionContainer(new MultiplicationExp(a, new Number(2)));
-    b->print();
-    a->setExpression(new Number(100));
-    b->print();*/
-    //a = resolving(listOfExp);
-   /* if(!a)
-    {
-        cout << "bledne dzialanie!" << endl;
-    }*/
-    a->print();
-    cout << endl;
-    /*map <char, Expression*> var;
-
-
-
-
-
-
-
-    Expression* a = new AdditionExp(new Number(2), new PowerExp(new Number(2), new AdditionExp(new Number(2), new Number(1))));
-    //a.eval();
-    cout << "a = ";
-    a.print();
-    cout << endl;
-
-    var['a'] = a;
-    Expression* b = new PowerExp(a, new Number(2));
-
-    cout << "b = ";
-    b.print();
-    cout << endl;
-    var['b'] = b;
-
-    a = new Number(2);
-    var['a'] = a;
-
-    //a.eval();
-    cout << "a = ";
-    a.print();
-    cout << endl;
-
-    //b = new PowerExp(a, new Number(2));
-    //b.eval();
-    cout << "b = ";
-    b.print();
-    cout << endl;*/
 }

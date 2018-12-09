@@ -7,8 +7,6 @@
 
 
 class Expression {
-protected:
-    std::string expression_;
 public:
     virtual ~Expression() {}
 

@@ -37,7 +37,6 @@ float FactorialExp::eval() {
 
 //liczba
 float Number::eval() {
-    /*cout << " no" << m_value << "\n";*/
     return m_value;
 }
 

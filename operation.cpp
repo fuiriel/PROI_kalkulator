@@ -22,11 +22,6 @@ void ExpressionContainer::setExpression(Expression *exp){
 //silnia
 float factorial(float n)
 {
-    if(n - floor(n) > 0)
-    {
-        cout << "bledne dzialanie!" << endl;
-        return -infinityf(); //zwraca -inf - sprawdz
-    }
     if (n == 1)
         return 1;
     else

@@ -5,7 +5,7 @@
 #include <stack>
 #include <list>
 #include "classes.h"
-#include "maps.h"
+#include <cmath>
 #include "function.h"
 using namespace std;
 
@@ -66,7 +66,7 @@ stack<string> shuntingYard(char *c)
                                           || (!c_next.empty() && op_[c_next] > 0 && op_[c_next] < 4))) {
             operators.push("!");
         }
-        else if(op_[s+c[i]] > 0 && op_[s+c[i]] < 4 && i != 0 && (isalnum(c[i+1])|| c[i] == '(')) // + - * / ^
+        else if(op_[s+c[i]] > 0 && op_[s+c[i]] < 4 && i != 0 && i != strlen(c)-1 && (isalnum(c[i+1]) || c[i+1] == '(')) // + - * / ^
         {
             s+=c[i];
             while(!operators.empty() && operators.top() != "(" &&
@@ -125,13 +125,18 @@ Expression* resolve(stack<string> exp_, map<char, ExpressionContainer*> var)
         if(ss >> v) {
             numbers.push(new Number(v));
         }
-        else if(op_[exp_.top()] == 4) // ! log ln exp
+        else  if(exp_.top() == "!" && numbers.top()->eval()-floor(numbers.top()->eval()) == 0)
         {
             v1 = numbers.top();
             numbers.pop();
-            if(exp_.top() == "!")
-                numbers.push(new FactorialExp(v1));
-            else if(exp_.top() == "log")
+            numbers.push(new FactorialExp(v1));
+        }
+        else if(op_[exp_.top()] == 4 && exp_.top() != "!") //log ln exp
+        {
+            v1 = numbers.top();
+            numbers.pop();
+
+            if(exp_.top() == "log")
                 numbers.push(new Log10Exp(v1));
             else if(exp_.top() == "ln")
                 numbers.push(new LnExp(v1));

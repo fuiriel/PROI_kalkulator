@@ -1,5 +1,7 @@
 #include <iostream>
+#include <cstdio>
 #include <cstring>
+#include <string>
 #include <map>
 #include <stack>
 #include <list>
@@ -17,9 +19,10 @@ int main() {
     char exp_default[100];
     char symbols[] = " abcdefghijklmnopqrstuvwxyz.1234567890/*()!+=-^";
     char *expression, *variable;
-
+    string s;
     while(true) {
-        gets(exp_default);
+        getline(cin, s);
+        strcpy(exp_default, s.c_str());
 
         if (exp_default[0] == '#') return 0;
         if(exp_default[0] == '=')

@@ -215,7 +215,7 @@ int main() {
             cout << "bledne dzialanie" << endl;
             continue;
         }
-        expression_->print();
+   
         if(var.find(variable[0]) != var.end()){
             var[variable[0]]->setExpression(expression_);
             continue;

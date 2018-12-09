@@ -11,6 +11,7 @@ void Expression::print() {
 }
 
 float ExpressionContainer::eval() {
+
     return m_exp->eval();
 }
 

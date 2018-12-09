@@ -8,6 +8,12 @@
 
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
 
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.h
+map
+-
+stack
+-
+
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/main.cpp
 iostream
 -
@@ -25,12 +31,14 @@ classes.h
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
 maps.h
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/maps.h
+function.h
+/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.h
 
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/maps.h
 map
 -
-classes.h
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
+stack
+-
 
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/operation.cpp
 iostream

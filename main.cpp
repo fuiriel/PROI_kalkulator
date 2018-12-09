@@ -10,6 +10,7 @@
 using namespace std;
 
 /*10*(2+2^2-10) rek = -80 nierek = -40*/
+/*10*(2+2^2-10)*log100+50 nierek ok, ale gdy spacja to "bledne dzialanie"*/
 
 stack<string> shunting_yard(char* c) {
     stack<string> operators;
@@ -117,117 +118,6 @@ void variableOfTwoOperandExp(list<string> &list_, list<string> &v1, list <string
     }
     v2 = list_;
 }
-Expression* resolving(list<string> exp_) //rekurencyjnie
-{
-    stringstream ss;
-    float v;
-    ss << exp_.back();
-    list <string> v1, v2;
-
-    if(ss >> v) {
-        return new Number(v);
-    }
-    else if(exp_.back() == "+") {
-        exp_.pop_back();
-        if(exp_.empty()) return nullptr;
-        if(exp_.size() == 2)
-        {
-            v1.push_back(exp_.front());
-            v2.push_back(exp_.back());
-            return new AdditionExp(resolving(v1),resolving(v2));
-        }
-        variableOfTwoOperandExp(exp_, v1, v2);
-
-        return new AdditionExp(resolving(v1),resolving(v2));
-    }
-    else if (exp_.back() == "-"){
-        exp_.pop_back();
-        if(exp_.empty()) return nullptr;
-
-        if(exp_.size() == 2)
-        {
-            v1.push_back(exp_.front());
-            v2.push_back(exp_.back());
-            return new SubtractionExp(resolving(v1),resolving(v2));
-        }
-        variableOfTwoOperandExp(exp_, v1, v2);
-
-        return new SubtractionExp(resolving(v1),resolving(v2));
-    }
-    else if (exp_.back() == "/"){
-        exp_.pop_back();
-        if(exp_.empty()) return nullptr;
-
-        if(exp_.size() == 2)
-        {
-            v1.push_back(exp_.front());
-            v2.push_back(exp_.back());
-            return new DivisionExp(resolving(v1),resolving(v2));
-        }
-        variableOfTwoOperandExp(exp_, v1, v2);
-
-        v2 = exp_;
-
-        return new DivisionExp(resolving(v1),resolving(v2));
-    }
-    else if (exp_.back() == "*"){
-        exp_.pop_back();
-        if(exp_.empty()) return nullptr;
-
-        if(exp_.size() == 2)
-        {
-            v1.push_back(exp_.front());
-            v2.push_back(exp_.back());
-            return new MultiplicationExp(resolving(v1),resolving(v2));
-        }
-        variableOfTwoOperandExp(exp_, v1, v2);
-
-        return new MultiplicationExp(resolving(v1),resolving(v2));
-    }
-    else if (exp_.back() == "^"){
-        exp_.pop_back();
-        if(exp_.empty()) return nullptr;
-
-        if(exp_.size() == 2) //2! log10 ???
-        {
-            v1.push_back(exp_.front());
-            v2.push_back(exp_.back());
-            return new PowerExp(resolving(v1), resolving(v2));
-        }
-        variableOfTwoOperandExp(exp_, v1, v2);
-        return new PowerExp(resolving(v1),resolving(v2));
-    }
-    else if (exp_.back() == "!"){
-        exp_.pop_back();
-        if(exp_.empty()) return nullptr;
-
-        return new FactorialExp(resolving(exp_));
-    }
-    else if (exp_.back() == "log"){
-        exp_.pop_back();
-        if(exp_.empty()) return nullptr;
-
-        return new Log10Exp(resolving(exp_));
-    }
-    else if (exp_.back() == "ln"){
-        exp_.pop_back();
-        if(exp_.empty()) return nullptr;
-
-        return new LnExp(resolving(exp_));
-    }
-    else if (exp_.back() == "exp"){
-        exp_.pop_back();
-        if(exp_.empty()) return nullptr;
-
-        return new ExpExp(resolving(exp_));
-    }
-    else{
-        cout << "BLAD!!";
-        return nullptr;
-    }
-
-
-}
 Expression* resolve(stack<string> exp_) //nierekurencyjnie
 {
     stringstream ss;
@@ -237,12 +127,11 @@ Expression* resolve(stack<string> exp_) //nierekurencyjnie
 
     while(!exp_.empty())
     {
-        ss.str("");         // usuwamy wszelki tekst ze strumienia
-        ss.clear();         // czyœcimy b³êdy konwersji z poprzednich wywo³añ
+        ss.str("");         // usuwanie tekstu ze strumienia
+        ss.clear();         // czyszcenie bledow konwersji
         ss << exp_.top();
 
         if(ss >> v) {
-            //cout << v << ';';
             numbers.push(new Number(v));
         }
         else if(exp_.top() == "+"){
@@ -305,8 +194,6 @@ Expression* resolve(stack<string> exp_) //nierekurencyjnie
             cout << "BLAD!!";
             return nullptr;
         }
-        // numbers.top().print();
-        //cout << endl;
         exp_.pop();
     }
     return numbers.top();
@@ -332,15 +219,15 @@ int main() {
         exps2.push(exps.top());
         exps.pop();
     }
-    list <string> listOfExp;
-    while(!exps.empty())
-    {
-        listOfExp.push_front(exps.top());
-        exps.pop();
-    }
-    //cout << listOfExp.size() << endl;
     Expression* a;
     a = resolve(exps2);
+
+//    Expression* b = new AdditionExp(new Number(2), new PowerExp(new Number(2), new AdditionExp(new Number(2), new Number(1))));
+    /*ExpressionContainer* a = new ExpressionContainer(new Number(3));
+    ExpressionContainer* b = new ExpressionContainer(new MultiplicationExp(a, new Number(2)));
+    b->print();
+    a->setExpression(new Number(100));
+    b->print();*/
     //a = resolving(listOfExp);
    /* if(!a)
     {

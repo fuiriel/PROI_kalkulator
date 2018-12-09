@@ -6,6 +6,18 @@
 #include "classes.h"
 using namespace  std;
 
+void Expression::print() {
+    cout << eval() << endl;
+}
+
+float ExpressionContainer::eval() {
+    return m_exp->eval();
+}
+
+void ExpressionContainer::setExpression(Expression *exp){
+    m_exp = exp;
+}
+
 //silnia
 float factorial(float n)
 {
@@ -22,79 +34,49 @@ float factorial(float n)
 float FactorialExp::eval() {
     return factorial(m_exp->eval());
 }
-void FactorialExp::print() {
-    cout << eval();
-}
 
 //liczba
 float Number::eval() {
-   // cout << " no" << m_value << " ";
+    /*cout << " no" << m_value << "\n";*/
     return m_value;
-}
-void Number::print(){
-    cout << m_value;
 }
 
 //potęgowanie
 float PowerExp::eval(){
     return pow(m_exp1->eval(), m_exp2->eval());
 }
-void  PowerExp::print() {
-    cout << eval();
-}
 
 //Log10
 float Log10Exp::eval(){
     return log10(m_exp->eval());
-}
-void  Log10Exp::print() {
-    cout << eval();
 }
 
 //Ln
 float LnExp::eval(){
     return log(m_exp->eval());
 }
-void  LnExp::print() {
-    cout << eval();
-}
 
 //Exp
 float ExpExp::eval(){
     return exp(m_exp->eval());
-}
-void  ExpExp::print() {
-    cout << eval();
 }
 
 //dodawanie
 float AdditionExp::eval() {
     return m_exp1->eval() + m_exp2->eval();
 }
-void  AdditionExp::print() {
-    cout << eval();
-}
 
 //odejmowanie
 float SubtractionExp::eval() {
     return m_exp1->eval() - m_exp2->eval();
-}
-void  SubtractionExp::print() {
-    cout << eval();
 }
 
 //mnożenie
 float MultiplicationExp::eval() {
     return m_exp1->eval() * m_exp2->eval();
 }
-void  MultiplicationExp::print() {
-    cout << eval();
-}
 
 //dzielenie
 float DivisionExp::eval() {
     return m_exp1->eval() / m_exp2->eval();
-}
-void  DivisionExp::print() {
-    cout << eval();
 }

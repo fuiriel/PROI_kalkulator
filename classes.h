@@ -13,7 +13,17 @@ public:
     virtual ~Expression() {}
 
     virtual float eval() = 0;
-    virtual void print() = 0;
+    void print();
+};
+
+class ExpressionContainer : public Expression {
+public:
+    explicit ExpressionContainer(Expression* exp) : m_exp(exp) {}
+    ~ExpressionContainer() {}
+    float eval();
+    void setExpression(Expression* exp);
+protected:
+    Expression* m_exp;
 };
 
 class Number: public Expression {
@@ -22,7 +32,6 @@ public:
     ~Number() {}
 
     float eval();
-    void print();
 protected:
     float m_value;
 };
@@ -31,7 +40,6 @@ class TwoOperandExp: public Expression {
 public:
     explicit TwoOperandExp(Expression* exp1, Expression* exp2) : m_exp1(exp1), m_exp2(exp2) {}
     ~TwoOperandExp() {}
-    //void print();
 protected:
     Expression* m_exp1;
     Expression* m_exp2;
@@ -43,7 +51,6 @@ public:
     explicit FactorialExp(Expression* exp) : m_exp(exp){}
     ~FactorialExp() {}
     float eval();
-    void print();
 protected:
     Expression* m_exp;
 };
@@ -53,7 +60,6 @@ public:
     PowerExp(Expression* exp1, Expression* exp2) : TwoOperandExp(exp1, exp2) {}
     ~PowerExp() {}
     float eval();
-    void print();
 };
 //log
 class Log10Exp: public Expression {
@@ -61,7 +67,6 @@ public:
     explicit Log10Exp(Expression* exp) : m_exp(exp){}
     ~Log10Exp() {}
     float eval();
-    void print();
 protected:
     Expression* m_exp;
 };
@@ -71,7 +76,6 @@ public:
     explicit LnExp(Expression* exp): m_exp(exp){}
     ~LnExp() {}
     float eval();
-    void print();
 protected:
     Expression* m_exp;
 };
@@ -81,7 +85,6 @@ public:
     explicit ExpExp(Expression* exp): m_exp(exp){}
     ~ExpExp() {}
     float eval();
-    void print();
 protected:
     Expression* m_exp;
 };
@@ -90,14 +93,12 @@ class AdditionExp: public TwoOperandExp {
 public:
     AdditionExp(Expression* exp1, Expression* exp2) : TwoOperandExp(exp1, exp2) {}
     float eval();
-    void print();
 };
 // odejmowanie
 class SubtractionExp : public TwoOperandExp {
 public:
     explicit SubtractionExp(Expression* exp1, Expression* exp2) : TwoOperandExp(exp1, exp2) {}
     float eval();
-    void print();
 };
 
 // mnożenie
@@ -105,15 +106,12 @@ class MultiplicationExp : public TwoOperandExp {
 public:
     explicit MultiplicationExp(Expression* exp1, Expression* exp2) : TwoOperandExp(exp1, exp2) {}
     float eval();
-    void print();
 };
 // dzielenie
 class DivisionExp : public TwoOperandExp {
 public:
     explicit DivisionExp(Expression* exp1, Expression* exp2) : TwoOperandExp(exp1, exp2) {}
     float eval();
-    void print();
 };
-
 
 #endif //PROI_KALKULATOR_CLASSES_H

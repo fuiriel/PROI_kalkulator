@@ -83,10 +83,13 @@
 		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h">
 			<Option target="PROI_kalkulator"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/main.cpp">
+		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.cpp">
 			<Option target="PROI_kalkulator"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/maps.h">
+		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.h">
+			<Option target="PROI_kalkulator"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/main.cpp">
 			<Option target="PROI_kalkulator"/>
 		</Unit>
 		<Unit filename="/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/operation.cpp">

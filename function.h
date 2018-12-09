@@ -5,12 +5,7 @@
 #ifndef PROI_KALKULATOR_FUNCTION_H
 #define PROI_KALKULATOR_FUNCTION_H
 
-#include <map>
-#include <stack>
-
-
-
-
-//Expression* resolve(std::stack<std::string> exp_);
+std::stack<std::string> shuntingYard(char*);
+Expression* resolve(std::stack<std::string> exp_, std::map<char, ExpressionContainer*>var);
 
 #endif //PROI_KALKULATOR_FUNCTION_H

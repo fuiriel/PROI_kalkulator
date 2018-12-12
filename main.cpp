@@ -32,7 +32,9 @@ void printQueue(queue<string> q)
 }
 
 int main() {
-    cout << "KALKULATOR ZMIENNYCH\nAby zakonczyc wpisz #\nAby wykonac obliczenia wpisz =\n";
+    cout << "KALKULATOR ZMIENNYCH\n------------------\nAby zakonczyc, wpisz #\nAby wykonac obliczenia, wpisz =\n";
+    cout << "Aby wyczyscic kontener zmiennych, wpisz X\n\n";
+
 
     char exp_default[100];
     char symbols[] = " abcdefghijklmnopqrstuvwxyz.1234567890/*()!+=-^";
@@ -43,17 +45,19 @@ int main() {
         strcpy(exp_default, s.c_str());
 
         if (exp_default[0] == '#') return 0;
-        if(exp_default[0] == '=')
-        {
-            if(!var.empty())
-            {
-                for(auto elem: var) //wypisuje mapę wyrazen
+        if (exp_default[0] == '=') {
+            if (!var.empty()) {
+                for (auto elem: var) //wypisuje mapę wyrazen
                 {
-                    cout << elem.first <<  " = ";
+                    cout << elem.first << " = ";
                     elem.second->print();
                 }
             } else
                 cout << "brak dzialan do wykonania" << endl;
+            continue;
+        }
+        if(exp_default[0] == 'X') {
+            var.clear();
             continue;
         }
 

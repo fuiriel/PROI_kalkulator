@@ -15,6 +15,8 @@ sstream
 -
 cstring
 -
+cctype
+-
 map
 -
 queue
@@ -33,11 +35,7 @@ function.h
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/main.cpp
 iostream
 -
-cstdio
--
 cstring
--
-string
 -
 map
 -

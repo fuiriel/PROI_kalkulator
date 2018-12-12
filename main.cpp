@@ -1,7 +1,5 @@
 #include <iostream>
-#include <cstdio>
 #include <cstring>
-#include <string>
 #include <map>
 #include <queue>
 #include <list>
@@ -9,10 +7,20 @@
 #include "function.h"
 using namespace std;
 
-/*czy b = b*2??*/
+/*czy b = b*2?? czy blad???
+ *b = a  a = b*/
 
 std::map<char, ExpressionContainer*> var;
 
+const char* noSpace(char *c) //usuwa spacje
+{
+    string newC = "";
+
+    for(int i = 0; i < strlen(c); i++)
+        if(c[i] != ' ') newC += c[i];
+
+    return newC.c_str();
+}
 void printQueue(queue<string> q)
 {
     while(!q.empty())
@@ -21,8 +29,8 @@ void printQueue(queue<string> q)
         q.pop();
     }
     cout << endl;
-
 }
+
 int main() {
     cout << "KALKULATOR ZMIENNYCH\nAby zakonczyc wpisz #\nAby wykonac obliczenia wpisz =\n";
 
@@ -48,6 +56,7 @@ int main() {
                 cout << "brak dzialan do wykonania" << endl;
             continue;
         }
+
         if(strlen(exp_default) == strcspn(exp_default,symbols) || strlen(exp_default) == strcspn(exp_default,"="))
             //sprawdza czy wystepuja niechciane znaki i czy na pewno jest "="
         {
@@ -55,15 +64,23 @@ int main() {
             continue;
         }
 
-        variable = strtok(exp_default, " ="); // dziele wczytanego stringa na zmienna i jej dzialanie
-        expression = strtok(nullptr, "=");
+        char clear_exp_default[100]; //działanie wyczyszczone -> bez spacji
+        strcpy(clear_exp_default, noSpace(exp_default)); //kopiuje tekst bez spacji
+        size_t sizeofexp = strlen(clear_exp_default);
 
-        if(strlen(variable) != 1 || !isalpha(variable[0])) //z zalozenia zmienna jest jednoliterowa
+        variable = strtok(clear_exp_default, " ="); // dzieli wczytanego stringa na zmienna
+        if(strlen(variable) != 1 || !isalpha(variable[0])) // brak dzialania po '=' o zmienna nie 1-literowa
         {
-            cout << "bledna zmienna" << endl;
+            cout << "bledna zmienna!" << endl;
             continue;
         }
 
+        expression = strtok(nullptr, "="); //dzieli wczytanego stringa na  dzialanie
+        if(!expression || sizeofexp != strlen(variable) + strlen(expression)+1) // więcej niż jedno '=' lub brak dzialania po '='
+        {
+            cout << "bledne dzialanie!" << endl;
+            continue;
+        }
         queue<string> s_expression = shuntingYard(expression);
         //printQueue(s_expression);
         if (s_expression.back() == "@") {
@@ -72,7 +89,7 @@ int main() {
         }
 
         Expression* expression_ = resolve(s_expression, var);
-        if(!expression_)
+        if(!expression_) //nie rozwiazano dzialania
         {
             cout << "bledne dzialanie" << endl;
             continue;
@@ -83,6 +100,5 @@ int main() {
             continue;
         }
         var[variable[0]] = new ExpressionContainer(expression_);
-
     }
 }

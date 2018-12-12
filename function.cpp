@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <cstring>
+#include <cctype>
 #include <map>
 #include <queue>
 #include <stack>
@@ -21,35 +22,27 @@ std::map<std::string, int> op_ =
                 {"ln", 4}, //-
                 {"exp", 4}, //-
         };
-const char* noSpace(char *c)
-{
-    string newC = "";
-    for(int i = 0; i < strlen(c); i++)
-        if(c[i] != ' ') newC += c[i];
-    return newC.c_str();
-}
-queue<string> shuntingYard(char *exp)
-{
-    stack<string> operators;
-    queue<string> output_;
 
-    char *c =  new char[100];
-    strcpy(c, noSpace(exp));
+queue<string> shuntingYard(char *c)
+{
+    stack<string> operators; //stos z operatorami
+    queue<string> output_; //kolejka z ONP
 
     for(int i = 0; i < strlen(c); i++)
     {
-        string s = "";
-        s.clear();
-        string c_next = "";
+        string c_default = ""; //string z dana litera
+        c_default.clear();
+        string c_next = ""; //string z nastepna litera
+        c_next.clear();
 
         if(i != strlen(c)-1) c_next += c[i+1];
         if(isdigit(c[i]) && (i == strlen(c)-1 || (!isalpha(c[i+1]) && c[i+1] != '('))){ //tworzy liczbę
 
             while(isdigit(c[i]) || c[i] == '.'){
-                s += c[i];
+                c_default += c[i];
                 i++;
             }
-            output_.push(s);
+            output_.push(c_default);
             i--;
         }
         else if(isalpha(c[i]))
@@ -71,7 +64,7 @@ queue<string> shuntingYard(char *exp)
                 return output_;
             }
         }
-        else if(c[i] == '-' && (i == 0 || c[i-1] == '('))
+        else if(c[i] == '-' && ((i == 0 && strlen(c) != 1) || c[i-1] == '('))
         {
             output_.push("0");
             operators.push("-");
@@ -80,16 +73,16 @@ queue<string> shuntingYard(char *exp)
                                           || (!c_next.empty() && op_[c_next] > 0 && op_[c_next] < 4))) {
             operators.push("!");
         }
-        else if(op_[s+c[i]] > 0 && op_[s+c[i]] < 4 && i != 0 && i != strlen(c)-1 && (isalnum(c[i+1]) || c[i+1] == '(')) // + - * / ^
+        else if(op_[c_default+c[i]] > 0 && op_[c_default+c[i]] < 4 && i != 0 && i != strlen(c)-1 && (isalnum(c[i+1]) || c[i+1] == '(')) // + - * / ^
         {
-            s+=c[i];
+            c_default+=c[i];
             while(!operators.empty() && operators.top() != "(" &&
-                  (op_[operators.top()] == 4 || op_[operators.top()] > op_[s] || op_[operators.top()] == op_[s]))
+                  (op_[operators.top()] == 4 || op_[operators.top()] > op_[c_default] || op_[operators.top()] == op_[c_default]))
             {
                 output_.push(operators.top());
                 operators.pop();
             }
-            operators.push(s);
+            operators.push(c_default);
         }
         else if(c[i] == '(' && i != strlen(c)-1 && (isalnum(c[i+1]) || c[i+1] == '-')){ //czy gdy i = 0?
             operators.push("(");
@@ -97,7 +90,7 @@ queue<string> shuntingYard(char *exp)
         else if(c[i] == ')' && i != 0 && (i == strlen(c)-1 || c[i+1] == '!'
                                           || (!c_next.empty() && op_[c_next] > 0 && op_[c_next] < 4)))
         {
-            while(operators.top() != "(" && !operators.empty())
+            while(!operators.empty() && operators.top() != "(")
             {
                 output_.push(operators.top());
                 operators.pop();
@@ -157,7 +150,7 @@ Expression* resolve(queue<string> exp_, map<char, ExpressionContainer*> var)
             else if(exp_.front() == "exp")
                 numbers.push(new ExpExp(v1));
         }
-        else if(isalpha(exp_.front()[0])){
+        else if(isalpha(exp_.front()[0]) && var[exp_.front()[0]]){
             numbers.push(var[exp_.front()[0]]);
         }
         else if(op_[exp_.front()] > 0 && op_[exp_.front()] < 4) // + - / * ^

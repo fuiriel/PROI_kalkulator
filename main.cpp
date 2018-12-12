@@ -3,7 +3,7 @@
 #include <cstring>
 #include <string>
 #include <map>
-#include <stack>
+#include <queue>
 #include <list>
 #include "classes.h"
 #include "function.h"
@@ -13,6 +13,16 @@ using namespace std;
 
 std::map<char, ExpressionContainer*> var;
 
+void printQueue(queue<string> q)
+{
+    while(!q.empty())
+    {
+        cout << q.front() <<' ';
+        q.pop();
+    }
+    cout << endl;
+
+}
 int main() {
     cout << "KALKULATOR ZMIENNYCH\nAby zakonczyc wpisz #\nAby wykonac obliczenia wpisz =\n";
 
@@ -46,7 +56,7 @@ int main() {
         }
 
         variable = strtok(exp_default, " ="); // dziele wczytanego stringa na zmienna i jej dzialanie
-        expression = strtok(nullptr, " =");
+        expression = strtok(nullptr, "=");
 
         if(strlen(variable) != 1 || !isalpha(variable[0])) //z zalozenia zmienna jest jednoliterowa
         {
@@ -54,19 +64,14 @@ int main() {
             continue;
         }
 
-        stack<string> s_expression = shuntingYard(expression);
-        if (s_expression.top() == "@") {
+        queue<string> s_expression = shuntingYard(expression);
+        //printQueue(s_expression);
+        if (s_expression.back() == "@") {
             cout << "bledne dzialanie" << endl;
             continue;
         }
 
-        stack<string> s_expression2; // przepisuje odrwotnie - stos s_expression do zmiany na queue lub listę by nie robic tej petli
-        while (!s_expression.empty()) {
-            s_expression2.push(s_expression.top());
-            s_expression.pop();
-        }
-
-        Expression* expression_ = resolve(s_expression2, var);
+        Expression* expression_ = resolve(s_expression, var);
         if(!expression_)
         {
             cout << "bledne dzialanie" << endl;

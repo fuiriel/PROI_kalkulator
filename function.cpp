@@ -2,8 +2,8 @@
 #include <sstream>
 #include <cstring>
 #include <map>
+#include <queue>
 #include <stack>
-#include <list>
 #include "classes.h"
 #include <cmath>
 #include "function.h"
@@ -21,22 +21,31 @@ std::map<std::string, int> op_ =
                 {"ln", 4}, //-
                 {"exp", 4}, //-
         };
-
-stack<string> shuntingYard(char *c)
+const char* noSpace(char *c)
+{
+    string newC = "";
+    for(int i = 0; i < strlen(c); i++)
+        if(c[i] != ' ') newC += c[i];
+    return newC.c_str();
+}
+queue<string> shuntingYard(char *exp)
 {
     stack<string> operators;
-    stack<string> output_;
+    queue<string> output_;
+
+    char *c =  new char[100];
+    strcpy(c, noSpace(exp));
 
     for(int i = 0; i < strlen(c); i++)
     {
         string s = "";
         s.clear();
         string c_next = "";
+
         if(i != strlen(c)-1) c_next += c[i+1];
+        if(isdigit(c[i]) && (i == strlen(c)-1 || (!isalpha(c[i+1]) && c[i+1] != '('))){ //tworzy liczbę
 
-        if(isdigit(c[i])){ //tworzy liczbę
-
-            while(isdigit(c[i])|| c[i] == '.'){
+            while(isdigit(c[i]) || c[i] == '.'){
                 s += c[i];
                 i++;
             }
@@ -62,6 +71,11 @@ stack<string> shuntingYard(char *c)
                 return output_;
             }
         }
+        else if(c[i] == '-' && (i == 0 || c[i-1] == '('))
+        {
+            output_.push("0");
+            operators.push("-");
+        }
         else if(c[i] == '!' && i != 0 && (i == strlen(c)-1 || c[i+1] == '!' || c[i+1] == ')'
                                           || (!c_next.empty() && op_[c_next] > 0 && op_[c_next] < 4))) {
             operators.push("!");
@@ -77,7 +91,7 @@ stack<string> shuntingYard(char *c)
             }
             operators.push(s);
         }
-        else if(c[i] == '(' && i != strlen(c)-1 && isalnum(c[i+1])){ //czy gdy i = 0?
+        else if(c[i] == '(' && i != strlen(c)-1 && (isalnum(c[i+1]) || c[i+1] == '-')){ //czy gdy i = 0?
             operators.push("(");
         }
         else if(c[i] == ')' && i != 0 && (i == strlen(c)-1 || c[i+1] == '!'
@@ -109,7 +123,7 @@ stack<string> shuntingYard(char *c)
     }
     return output_;
 }
-Expression* resolve(stack<string> exp_, map<char, ExpressionContainer*> var)
+Expression* resolve(queue<string> exp_, map<char, ExpressionContainer*> var)
 {
     stringstream ss;
     float v;
@@ -120,47 +134,47 @@ Expression* resolve(stack<string> exp_, map<char, ExpressionContainer*> var)
     {
         ss.str("");         // usuwanie tekstu ze strumienia
         ss.clear();         // czyszcenie bledow konwersji
-        ss << exp_.top();
+        ss << exp_.front();
 
         if(ss >> v) {
             numbers.push(new Number(v));
         }
-        else  if(exp_.top() == "!" && numbers.top()->eval()-floor(numbers.top()->eval()) == 0)
+        else  if(exp_.front() == "!" && numbers.top()->eval()-floor(numbers.top()->eval()) == 0)
         {
             v1 = numbers.top();
             numbers.pop();
             numbers.push(new FactorialExp(v1));
         }
-        else if(op_[exp_.top()] == 4 && exp_.top() != "!") //log ln exp
+        else if(op_[exp_.front()] == 4 && exp_.front() != "!") //log ln exp
         {
             v1 = numbers.top();
             numbers.pop();
 
-            if(exp_.top() == "log")
+            if(exp_.front() == "log")
                 numbers.push(new Log10Exp(v1));
-            else if(exp_.top() == "ln")
+            else if(exp_.front() == "ln")
                 numbers.push(new LnExp(v1));
-            else if(exp_.top() == "exp")
+            else if(exp_.front() == "exp")
                 numbers.push(new ExpExp(v1));
         }
-        else if(isalpha(exp_.top()[0])){
-            numbers.push(var[exp_.top()[0]]);
+        else if(isalpha(exp_.front()[0])){
+            numbers.push(var[exp_.front()[0]]);
         }
-        else if(op_[exp_.top()] > 0 && op_[exp_.top()] < 4) // + - / * ^
+        else if(op_[exp_.front()] > 0 && op_[exp_.front()] < 4) // + - / * ^
         {
             v1 = numbers.top();
             numbers.pop();
             v2 = numbers.top();
             numbers.pop();
-            if(exp_.top() == "+")
+            if(exp_.front() == "+")
                 numbers.push(new AdditionExp(v2,v1));
-            else if(exp_.top() == "-")
+            else if(exp_.front() == "-")
                 numbers.push(new SubtractionExp(v2,v1));
-            else if(exp_.top() == "/")
+            else if(exp_.front() == "/")
                 numbers.push(new DivisionExp(v2,v1));
-            else if(exp_.top() == "*")
+            else if(exp_.front() == "*")
                 numbers.push(new MultiplicationExp(v2,v1));
-            else if(exp_.top() == "^")
+            else if(exp_.front() == "^")
                 numbers.push(new PowerExp(v2,v1));
         }
         else{

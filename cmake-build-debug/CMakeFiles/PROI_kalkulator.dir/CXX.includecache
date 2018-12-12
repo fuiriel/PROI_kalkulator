@@ -17,14 +17,14 @@ cstring
 -
 map
 -
-stack
+queue
 -
-list
+stack
 -
 classes.h
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
-maps.h
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/maps.h
+cmath
+-
 function.h
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.h
 
@@ -33,22 +33,22 @@ function.h
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/main.cpp
 iostream
 -
+cstdio
+-
 cstring
+-
+string
 -
 map
 -
-stack
+queue
 -
 list
 -
 classes.h
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/classes.h
-maps.h
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/maps.h
 function.h
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/function.h
-
-/cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/maps.h
 
 /cygdrive/d/Mine/Documents/studia/PW/PROI/Projekt2/PROI_Kalkulator/PROI_kalkulator/operation.cpp
 iostream
